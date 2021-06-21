@@ -6,7 +6,11 @@ module Blazer
     skip_after_action(*filters, raise: false)
     skip_around_action(*filters, raise: false)
 
-    clear_helpers
+    content_security_policy do |p|
+      p.default_src "'self' https: 'unsafe-inline' 'unsafe-eval' data:"
+    end
+
+    content_security_policy
 
     protect_from_forgery with: :exception
 
@@ -25,7 +29,7 @@ module Blazer
     if Blazer.override_csp
       after_action do
         # if Rails::VERSION::MAJOR >= 5
-          response.set_header('Content-Security-Policy', "default-src 'self' https: 'unsafe-inline' 'unsafe-eval' data:")
+        #   response.set_header('Content-Security-Policy', "default-src 'self' https: 'unsafe-inline' 'unsafe-eval' data:")
         # else
         #   response.headers['Content-Security-Policy'] = "default-src 'self' https: 'unsafe-inline' 'unsafe-eval' data:"
         # end
