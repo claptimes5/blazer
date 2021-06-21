@@ -10,8 +10,6 @@ module Blazer
       p.default_src "'self' https: 'unsafe-inline' 'unsafe-eval' data:"
     end
 
-    content_security_policy
-
     protect_from_forgery with: :exception
 
     if ENV["BLAZER_PASSWORD"]
