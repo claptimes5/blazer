@@ -24,11 +24,11 @@ module Blazer
 
     if Blazer.override_csp
       after_action do
-        if Rails::VERSION::MAJOR >= 5
+        # if Rails::VERSION::MAJOR >= 5
           response.set_header('Content-Security-Policy', "default-src 'self' https: 'unsafe-inline' 'unsafe-eval' data:")
-        else
-          response.headers['Content-Security-Policy'] = "default-src 'self' https: 'unsafe-inline' 'unsafe-eval' data:"
-        end
+        # else
+        #   response.headers['Content-Security-Policy'] = "default-src 'self' https: 'unsafe-inline' 'unsafe-eval' data:"
+        # end
       end
     end
 
